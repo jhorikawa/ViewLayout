@@ -1,0 +1,25 @@
+﻿Option Explicit
+'Script written by <Junichiro Horikawa>
+'Script copyrighted by <Junichiro Horikawa>
+'Script version Saturday, July 02, 2011 10:21:58 AM
+
+Call Main()
+Sub Main()
+	Dim arrViews, strView, i,strResult
+	Dim arrValues()
+
+	' Print view names
+
+	arrViews = Rhino.ViewNames(True,1)
+
+
+	If IsArray(arrViews) Then
+		For i = 0 To UBound(arrViews) Step 1
+			ReDim Preserve arrValues(i)
+			arrValues(i) = True
+		Next
+		strResult = Rhino.ListBox(arrViews,"select layout for viewing")
+
+		Rhino.CurrentView strResult
+	End If
+End Sub
